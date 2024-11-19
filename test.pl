@@ -37,7 +37,17 @@ prey(X, Y) :-
 	animal(X).
 	
 inTheFoodChain(X, Y) :-
-    eat(Y, X).  % Base case: Y directly eats X.
+    eat(Y, X).  % Base case
 inTheFoodChain(X, Y) :-
-    eat(Y, Z),  % Recursive case: Y eats Z...
-    inTheFoodChain(X, Z).  % ...and X is in the food chain of Z.
+    eat(Y, Z),  % Recursive case
+    inTheFoodChain(X, Z).
+
+commonPrey(X, Y, Z) :-
+	inTheFoodChain(Z, X), inTheFoodChain(Z, Y).
+
+compete(X, Y) :-
+	animal(X),
+	animal(Y),
+	X \= Y,
+	commonPrey(X, Y, Z).
+	\+ inTheFoodChain(Y, X).
