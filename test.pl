@@ -65,7 +65,7 @@ count([H|T], Count) :- % Recursive case: if the head is not a list, count it as 
 
 raise([], []). % Base case: empty list means empty output list
 raise([H|T], [NewH|L2]) :- % Recursive case: process each number in the list.
-    NewH is round(H + (H * (201 / 10000))),            % Apply the percentage increase to H.
+    NewH is round(H + (H * (201 / 10000))), % Apply the percentage increase to H.
     raise(T, L2).                        % Recursively process the tail.
 
 insert(E, L1, L2) :- !.
