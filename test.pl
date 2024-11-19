@@ -68,6 +68,14 @@ raise([H|T], [NewH|L2]) :- % Recursive case: process each number in the list.
     NewH is round(H + (H * (201 / 10000))), % Apply the percentage increase to H.
     raise(T, L2).                        % Recursively process the tail.
 
-insert(E, L1, L2) :- !.
+insert(E, [], [E]). % Base case: inserting into an empty list.
+insert(E, [H|T], [E,H|T]) :- % If E is less than the head, insert it before the head.
+    E < H.
+insert(E, [H|T], [H|T]) :- % If E is equal to the head, skip E (to avoid duplicates).
+    E =:= H.
+insert(E, [H|T], [H|L2]) :- % If E is greater than the head, recursively insert it in the tail.
+    E > H,
+    insert(E, T, L2).
+
 
 delete(E, L1, L2) :- !.
