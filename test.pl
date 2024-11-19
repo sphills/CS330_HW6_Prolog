@@ -77,5 +77,9 @@ insert(E, [H|T], [H|L2]) :- % If E is greater than the head, recursively insert 
     E > H,
     insert(E, T, L2).
 
-
-delete(E, L1, L2) :- !.
+delete(_, [], []). % Base case: an empty list remains empty after deletion.
+delete(E, [E|T], L2) :- % If the head matches the element to delete, skip it and process the tail.
+    delete(E, T, L2).
+delete(E, [H|T], [H|L2]) :- % If the head does not match, include it and process the tail.
+    E \= H,
+    delete(E, T, L2).
