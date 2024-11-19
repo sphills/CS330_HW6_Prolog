@@ -35,3 +35,7 @@ prey(X, Y) :-
 	eat(Y, X),
 	animal(Y),
 	animal(X).
+
+inTheFoodChain(X, Y) :-
+	prey(X, Y);
+	prey(Z, Y), prey(X, Z).
