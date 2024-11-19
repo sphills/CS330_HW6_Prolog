@@ -50,4 +50,4 @@ compete(X, Y) :-
 	animal(Y),
 	X \= Y,
 	commonPrey(X, Y, Z),
-	not(inTheFoodChain(Y, X)).
+	\+inTheFoodChain(Y, X).
