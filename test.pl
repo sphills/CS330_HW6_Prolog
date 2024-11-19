@@ -49,5 +49,5 @@ compete(X, Y) :-
 	animal(X),
 	animal(Y),
 	X \= Y,
-	commonPrey(X, Y, Z).
-	\+ inTheFoodChain(Y, X).
+	commonPrey(X, Y, Z),
+	not(inTheFoodChain(Y, X)).
